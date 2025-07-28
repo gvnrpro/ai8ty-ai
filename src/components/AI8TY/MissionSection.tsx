@@ -1,65 +1,89 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Target, Heart, Shield, Globe } from 'lucide-react';
+import { Target, Shield, Users, Lightbulb, ArrowUpRight } from 'lucide-react';
 
 const MissionSection: React.FC = () => {
-  const missionPoints = [
+  const values = [
     {
-      icon: <Target className="w-6 h-6 text-primary" />,
+      icon: <Shield className="w-8 h-8" />,
       title: 'Clarity over complexity',
-      description: 'We believe powerful tools should be intuitive to use'
+      description: 'We cut through the noise to deliver solutions that make sense',
+      gradient: 'from-space-blue to-space-purple'
     },
     {
-      icon: <Heart className="w-6 h-6 text-accent" />,
+      icon: <Users className="w-8 h-8" />,
       title: 'Tools people can actually use',
-      description: 'Technology that enhances human capability rather than replacing it'
+      description: 'Real usability for real people in real situations',
+      gradient: 'from-space-purple to-space-pink'
     },
     {
-      icon: <Globe className="w-6 h-6 text-secondary" />,
-      title: 'Impact that reaches beyond technologists',
-      description: 'Making advanced AI accessible to creators, businesses, and communities'
+      icon: <Lightbulb className="w-8 h-8" />,
+      title: 'Impact beyond technologists',
+      description: 'Technology that reaches and empowers everyone',
+      gradient: 'from-space-pink to-space-blue'
     },
     {
-      icon: <Shield className="w-6 h-6 text-primary" />,
-      title: 'Safety as a foundational principle',
-      description: 'Building secure, responsible AI systems from the ground up'
+      icon: <Target className="w-8 h-8" />,
+      title: 'Safety as a foundation',
+      description: 'Not an afterthought, but built into everything we create',
+      gradient: 'from-space-blue to-space-cyan'
     }
   ];
 
   return (
-    <section id="mission" className="py-20 px-6 bg-gradient-to-b from-transparent to-black/20">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            🟣 Our Mission
-          </h2>
-          <div className="max-w-4xl mx-auto space-y-6">
-            <p className="text-xl text-white/90 leading-relaxed">
-              AI8TY was founded on the belief that advanced intelligence should serve more people—not just through breakthroughs, but through usability.
-            </p>
-            <p className="text-lg text-white/80 leading-relaxed">
-              Our mission is to design and deploy systems that accelerate access, automation, and innovation across industries and communities.
-            </p>
+    <div className="py-32 px-6 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-space-purple opacity-10 rounded-full blur-3xl animate-pulse-glow"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Mission Header */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-3 glass-card px-6 py-3 mb-8 bg-gradient-to-r from-space-pink/20 to-space-purple/20">
+            <Target className="w-6 h-6 text-space-pink" />
+            <span className="text-lg font-semibold text-white">Our Mission</span>
           </div>
+          
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
+            Advanced intelligence should{' '}
+            <span className="bg-gradient-to-r from-space-blue via-space-purple to-space-pink bg-clip-text text-transparent">
+              serve more people
+            </span>
+          </h2>
+          
+          <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+            AI8TY was founded on the belief that advanced intelligence should serve more people—not just through breakthroughs, but through usability. Our mission is to design and deploy systems that accelerate access, automation, and innovation across industries and communities.
+          </p>
         </div>
 
-        {/* Mission Points */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {missionPoints.map((point, index) => (
-            <Card key={index} className="glass-card border-white/10 hover:border-primary/30 transition-all duration-300">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 glass-card rounded-full flex items-center justify-center">
-                    {point.icon}
+        {/* Values Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+          {values.map((value, index) => (
+            <Card 
+              key={index} 
+              className="glass-card border-0 hover:border-space-blue/40 transition-all duration-500 transform hover:scale-105 group"
+            >
+              <CardContent className="p-8 relative overflow-hidden">
+                {/* Gradient overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-10 group-hover:opacity-20 transition-opacity`}></div>
+                
+                <div className="relative z-10">
+                  <div className={`w-16 h-16 glass-card rounded-full flex items-center justify-center mb-6 bg-gradient-to-r ${value.gradient} bg-opacity-20 text-white`}>
+                    {value.icon}
                   </div>
-                  <div className="space-y-2">
-                    <h3 className="text-lg font-semibold text-white">
-                      {point.title}
-                    </h3>
-                    <p className="text-white/70 text-sm leading-relaxed">
-                      {point.description}
-                    </p>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    {value.title}
+                  </h3>
+                  
+                  <p className="text-white/80 leading-relaxed">
+                    {value.description}
+                  </p>
+                  
+                  <div className="flex items-center gap-2 mt-6 text-space-blue group-hover:text-space-pink transition-colors cursor-pointer">
+                    <span className="text-sm font-medium">Learn more</span>
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                 </div>
               </CardContent>
@@ -67,14 +91,22 @@ const MissionSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Bottom Message */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-white/80 italic">
-            We focus on reducing the friction between great ideas and great outcomes.
-          </p>
+        {/* Goal Statement */}
+        <div className="text-center">
+          <div className="glass-card p-12 bg-gradient-to-r from-space-dark/50 to-space-blue/20 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-space-blue/10 to-space-pink/10"></div>
+            <div className="relative z-10">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6">
+                Our goal is simple
+              </h3>
+              <p className="text-2xl text-space-blue font-light">
+                Reduce the friction between great ideas and great outcomes
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

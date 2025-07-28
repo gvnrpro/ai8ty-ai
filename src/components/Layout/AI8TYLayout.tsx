@@ -25,7 +25,7 @@ const AI8TYLayout: React.FC<AI8TYLayoutProps> = ({
         onNavigate={onNavigate}
         onMobileMenuToggle={onMobileMenuToggle}
       />
-      <main className="flex-1 pt-16">
+      <main className="flex-1 pt-20">{/* Updated to match new nav height */}
         {children}
       </main>
     </div>
