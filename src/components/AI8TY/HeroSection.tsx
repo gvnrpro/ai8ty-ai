@@ -281,16 +281,18 @@ transformOrigin: ‘center top’
     </div>
   </div>
 
-  <style jsx>{`
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg);
+  <style dangerouslySetInnerHTML={{
+    __html: `
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+        }
       }
-      50% {
-        transform: translateY(-20px) rotate(180deg);
-      }
-    }
-  `}</style>
+    `
+  }} />
 </section>
 ```
 
