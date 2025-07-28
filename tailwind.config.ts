@@ -52,6 +52,11 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				surface: {
+					primary: 'rgba(12, 10, 31, 0.85)',
+					secondary: 'rgba(30, 41, 82, 0.15)',
+					elevated: 'rgba(30, 41, 82, 0.25)'
 				}
 			},
 			fontFamily: {
