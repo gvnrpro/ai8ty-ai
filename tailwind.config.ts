@@ -52,14 +52,46 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
-				},
-				space: {
-					blue: '#1e3a8a',
-					pink: '#ec4899',
-					purple: '#8b5cf6',
-					cyan: '#06b6d4',
-					dark: '#0c0a1f'
 				}
+			},
+			fontFamily: {
+				sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Inter', 'system-ui', 'sans-serif'],
+				mono: ['SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'monospace']
+			},
+			fontSize: {
+				'display-2xl': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+				'display-xl': ['3.75rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
+				'display-lg': ['3rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+				'display-md': ['2.25rem', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
+				'display-sm': ['1.875rem', { lineHeight: '1.4', letterSpacing: '-0.01em' }],
+				'headline': ['1.5rem', { lineHeight: '1.4', letterSpacing: '-0.01em' }],
+				'body-lg': ['1.125rem', { lineHeight: '1.6', letterSpacing: '0' }],
+				'body': ['1rem', { lineHeight: '1.6', letterSpacing: '0' }],
+				'body-sm': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0' }],
+				'caption': ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.02em' }]
+			},
+			spacing: {
+				'18': '4.5rem',
+				'22': '5.5rem',
+				'26': '6.5rem',
+				'30': '7.5rem',
+				'34': '8.5rem',
+				'38': '9.5rem',
+				'42': '10.5rem',
+				'46': '11.5rem',
+				'50': '12.5rem',
+				'54': '13.5rem',
+				'58': '14.5rem',
+				'62': '15.5rem',
+				'66': '16.5rem',
+				'70': '17.5rem',
+				'74': '18.5rem',
+				'78': '19.5rem',
+				'82': '20.5rem',
+				'86': '21.5rem',
+				'90': '22.5rem',
+				'94': '23.5rem',
+				'98': '24.5rem'
 			},
 			backgroundImage: {
 				'space-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #ec4899 50%, #8b5cf6 100%)',

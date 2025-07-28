@@ -27,15 +27,15 @@ const TopNavigation: React.FC<TopNavigationProps> = ({
   return (
     <>
       {/* Main Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-0 border-b border-space-blue/20 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+      <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-0 backdrop-blur-xl">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div 
               className="flex items-center cursor-pointer group"
               onClick={() => onNavigate('home')}
             >
-              <div className="text-3xl font-bold bg-gradient-to-r from-space-blue via-space-purple to-space-pink bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+              <div className="text-headline font-bold text-white group-hover:text-primary transition-colors">
                 AI8TY
               </div>
             </div>
@@ -46,20 +46,17 @@ const TopNavigation: React.FC<TopNavigationProps> = ({
                 <button
                   key={item.id}
                   onClick={() => onNavigate(item.id as AI8TYPage)}
-                  className={`px-4 py-2 text-sm font-medium transition-all duration-300 hover:text-white relative group ${
-                    currentPage === item.id ? 'text-white' : 'text-white/70'
+                  className={`text-body font-medium transition-colors ${
+                    currentPage === item.id ? 'text-white' : 'text-white/60 hover:text-white/80'
                   }`}
                 >
                   {item.label}
-                  {/* Animated underline */}
-                  <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-space-blue to-space-pink transition-all duration-300 ${
-                    currentPage === item.id ? 'w-full' : 'w-0 group-hover:w-full'
-                  }`}></div>
                 </button>
               ))}
               <Button
                 onClick={() => onNavigate('try-ai8ty')}
-                className="glass-button text-white font-semibold px-6 py-3"
+                variant="glass"
+                size="sm"
               >
                 Try AI8TY
               </Button>
@@ -69,9 +66,9 @@ const TopNavigation: React.FC<TopNavigationProps> = ({
             <div className="md:hidden">
               <button
                 onClick={onMobileMenuToggle}
-                className="text-white/80 hover:text-white transition-colors p-2 glass-card"
+                className="text-white/60 hover:text-white transition-colors p-2"
               >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
@@ -81,17 +78,17 @@ const TopNavigation: React.FC<TopNavigationProps> = ({
       {/* Mobile Navigation Menu */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" onClick={onMobileMenuToggle} />
-          <div className="fixed top-20 right-4 left-4 glass-card border border-space-blue/20 rounded-2xl overflow-hidden">
-            <div className="p-6 space-y-6">
+          <div className="fixed inset-0 bg-black/40" onClick={onMobileMenuToggle} />
+          <div className="fixed top-16 right-4 left-4 glass-card rounded-2xl overflow-hidden">
+            <div className="p-6 space-y-4">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => onNavigate(item.id as AI8TYPage)}
-                  className={`block w-full text-left px-4 py-3 text-lg font-medium transition-all duration-300 rounded-lg ${
+                  className={`block w-full text-left px-4 py-3 text-body font-medium transition-colors rounded-xl ${
                     currentPage === item.id 
-                      ? 'text-white bg-gradient-to-r from-space-blue/30 to-space-purple/30' 
-                      : 'text-white/80 hover:text-white hover:bg-space-blue/20'
+                      ? 'text-white bg-primary/20' 
+                      : 'text-white/80 hover:text-white hover:bg-white/5'
                   }`}
                 >
                   {item.label}
@@ -99,7 +96,8 @@ const TopNavigation: React.FC<TopNavigationProps> = ({
               ))}
               <Button
                 onClick={() => onNavigate('try-ai8ty')}
-                className="w-full glass-button text-white font-semibold py-4"
+                variant="glass"
+                className="w-full"
               >
                 Try AI8TY
               </Button>
