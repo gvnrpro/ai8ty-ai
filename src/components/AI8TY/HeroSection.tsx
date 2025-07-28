@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from ‘react’;
+import React, { useEffect, useRef, useState } from “react”;
 
 interface HeroSectionProps {
 onNavigate: (page: string) => void;
@@ -18,40 +18,40 @@ useEffect(() => {
 const animateEntrance = () => {
 // Initial state - everything hidden
 if (titleRef.current) {
-const words = titleRef.current.querySelectorAll(’.word’);
+const words = titleRef.current.querySelectorAll(”.word”);
 words.forEach(word => {
-word.style.transform = ‘translateY(100px) rotateX(-90deg)’;
-word.style.opacity = ‘0’;
+(word as HTMLElement).style.transform = “translateY(100px) rotateX(-90deg)”;
+(word as HTMLElement).style.opacity = “0”;
 });
 }
 
 ```
   if (subtitleRef.current) {
-    subtitleRef.current.style.transform = 'translateY(50px)';
-    subtitleRef.current.style.opacity = '0';
+    subtitleRef.current.style.transform = "translateY(50px)";
+    subtitleRef.current.style.opacity = "0";
   }
 
   if (buttonsRef.current) {
-    const buttons = buttonsRef.current.querySelectorAll('button');
+    const buttons = buttonsRef.current.querySelectorAll("button");
     buttons.forEach(button => {
-      button.style.transform = 'translateY(30px) scale(0.8)';
-      button.style.opacity = '0';
+      (button as HTMLElement).style.transform = "translateY(30px) scale(0.8)";
+      (button as HTMLElement).style.opacity = "0";
     });
   }
 
   // Grid lines animation
   if (gridRef.current) {
-    const lines = gridRef.current.querySelectorAll('.grid-line');
+    const lines = gridRef.current.querySelectorAll(".grid-line");
     lines.forEach(line => {
-      line.style.transform = 'scaleX(0)';
+      (line as HTMLElement).style.transform = "scaleX(0)";
     });
   }
 
   // Particles initial state
   particlesRef.current.forEach(particle => {
     if (particle) {
-      particle.style.transform = 'scale(0) rotate(0deg)';
-      particle.style.opacity = '0';
+      particle.style.transform = "scale(0) rotate(0deg)";
+      particle.style.opacity = "0";
     }
   });
 
@@ -59,23 +59,23 @@ word.style.opacity = ‘0’;
   setTimeout(() => {
     // Grid lines appear first
     if (gridRef.current) {
-      const lines = gridRef.current.querySelectorAll('.grid-line');
+      const lines = gridRef.current.querySelectorAll(".grid-line");
       lines.forEach((line, index) => {
         setTimeout(() => {
-          line.style.transition = 'transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          line.style.transform = 'scaleX(1)';
+          (line as HTMLElement).style.transition = "transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+          (line as HTMLElement).style.transform = "scaleX(1)";
         }, index * 100);
       });
     }
 
     // Title words stagger in
     if (titleRef.current) {
-      const words = titleRef.current.querySelectorAll('.word');
+      const words = titleRef.current.querySelectorAll(".word");
       words.forEach((word, index) => {
         setTimeout(() => {
-          word.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          word.style.transform = 'translateY(0) rotateX(0deg)';
-          word.style.opacity = '1';
+          (word as HTMLElement).style.transition = "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+          (word as HTMLElement).style.transform = "translateY(0) rotateX(0deg)";
+          (word as HTMLElement).style.opacity = "1";
         }, 400 + index * 100);
       });
     }
@@ -83,21 +83,21 @@ word.style.opacity = ‘0’;
     // Subtitle follows
     setTimeout(() => {
       if (subtitleRef.current) {
-        subtitleRef.current.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-        subtitleRef.current.style.transform = 'translateY(0)';
-        subtitleRef.current.style.opacity = '1';
+        subtitleRef.current.style.transition = "all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+        subtitleRef.current.style.transform = "translateY(0)";
+        subtitleRef.current.style.opacity = "1";
       }
     }, 1000);
 
     // Buttons appear
     setTimeout(() => {
       if (buttonsRef.current) {
-        const buttons = buttonsRef.current.querySelectorAll('button');
+        const buttons = buttonsRef.current.querySelectorAll("button");
         buttons.forEach((button, index) => {
           setTimeout(() => {
-            button.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            button.style.transform = 'translateY(0) scale(1)';
-            button.style.opacity = '1';
+            (button as HTMLElement).style.transition = "all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            (button as HTMLElement).style.transform = "translateY(0) scale(1)";
+            (button as HTMLElement).style.opacity = "1";
           }, index * 150);
         });
       }
@@ -108,9 +108,9 @@ word.style.opacity = ‘0’;
       particlesRef.current.forEach((particle, index) => {
         if (particle) {
           setTimeout(() => {
-            particle.style.transition = 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            particle.style.transform = 'scale(1) rotate(360deg)';
-            particle.style.opacity = '0.6';
+            particle.style.transition = "all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            particle.style.transform = "scale(1) rotate(360deg)";
+            particle.style.opacity = "0.6";
           }, index * 50);
         }
       });
@@ -128,20 +128,20 @@ animateEntrance();
 // Enhanced button hover effects
 const handleButtonHover = (e: React.MouseEvent<HTMLButtonElement>, isEntering: boolean) => {
 const button = e.currentTarget;
-const ripple = button.querySelector(’.ripple-effect’) as HTMLElement;
+const ripple = button.querySelector(”.ripple-effect”) as HTMLElement;
 
 ```
 if (isEntering) {
-  button.style.transform = 'translateY(-2px) scale(1.05)';
+  button.style.transform = "translateY(-2px) scale(1.05)";
   if (ripple) {
-    ripple.style.transform = 'scale(1)';
-    ripple.style.opacity = '0.2';
+    ripple.style.transform = "scale(1)";
+    ripple.style.opacity = "0.2";
   }
 } else {
-  button.style.transform = 'translateY(0) scale(1)';
+  button.style.transform = "translateY(0) scale(1)";
   if (ripple) {
-    ripple.style.transform = 'scale(0)';
-    ripple.style.opacity = '0';
+    ripple.style.transform = "scale(0)";
+    ripple.style.opacity = "0";
   }
 }
 ```
@@ -150,8 +150,8 @@ if (isEntering) {
 
 // Split text into words for stagger animation
 const splitTextIntoWords = (text: string) => {
-return text.split(’ ’).map((word, index) => (
-<span key={index} className=“word inline-block mr-2” style={{ transformStyle: ‘preserve-3d’ }}>
+return text.split(” “).map((word, index) => (
+<span key={index} className=“word inline-block mr-2” style={{ transformStyle: “preserve-3d” }}>
 {word}
 </span>
 ));
@@ -172,7 +172,7 @@ style={{
 top: `${(i + 1) * 5}%`,
 left: 0,
 right: 0,
-transformOrigin: ‘left center’
+transformOrigin: “left center”
 }}
 />
 ))}
@@ -184,7 +184,7 @@ style={{
 left: `${(i + 1) * 5}%`,
 top: 0,
 bottom: 0,
-transformOrigin: ‘center top’
+transformOrigin: “center top”
 }}
 />
 ))}
@@ -201,7 +201,7 @@ transformOrigin: ‘center top’
         style={{
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * 100}%`,
-          animation: isLoaded ? `float ${3 + Math.random() * 4}s ease-in-out infinite` : 'none',
+          animation: isLoaded ? `float ${3 + Math.random() * 4}s ease-in-out infinite` : "none",
           animationDelay: `${Math.random() * 2}s`
         }}
       />
@@ -218,13 +218,13 @@ transformOrigin: ‘center top’
     <h1 
       ref={titleRef}
       className="mb-6 text-5xl font-bold leading-tight tracking-tight md:text-7xl"
-      style={{ perspective: '1000px' }}
+      style={{ perspective: "1000px" }}
     >
       <div className="mb-2">
-        {splitTextIntoWords('Building systems for a more')}
+        {splitTextIntoWords("Building systems for a more")}
       </div>
       <div className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-        {splitTextIntoWords('intelligent, accessible future.')}
+        {splitTextIntoWords("intelligent, accessible future.")}
       </div>
     </h1>
 
@@ -240,7 +240,7 @@ transformOrigin: ‘center top’
       className="flex flex-col gap-6 sm:flex-row sm:justify-center items-center"
     >
       <button
-        onClick={() => onNavigate('about')}
+        onClick={() => onNavigate("about")}
         onMouseEnter={(e) => handleButtonHover(e, true)}
         onMouseLeave={(e) => handleButtonHover(e, false)}
         className="relative group h-14 px-8 text-lg font-medium bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 transition-all duration-300 rounded-xl overflow-hidden"
@@ -255,7 +255,7 @@ transformOrigin: ‘center top’
       </button>
       
       <button
-        onClick={() => onNavigate('try-ai8ty')}
+        onClick={() => onNavigate("try-ai8ty")}
         onMouseEnter={(e) => handleButtonHover(e, true)}
         onMouseLeave={(e) => handleButtonHover(e, false)}
         className="relative group h-14 px-8 text-lg font-medium border-2 border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 rounded-xl backdrop-blur-sm overflow-hidden"
