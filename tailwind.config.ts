@@ -54,14 +54,14 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				surface: {
-					primary: 'rgba(12, 10, 31, 0.85)',
-					secondary: 'rgba(30, 41, 82, 0.15)',
-					elevated: 'rgba(30, 41, 82, 0.25)'
+					primary: 'rgba(0, 0, 0, 1)',
+					secondary: 'rgba(17, 17, 17, 1)',
+					elevated: 'rgba(34, 34, 34, 1)'
 				}
 			},
 			fontFamily: {
-				sans: ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Inter', 'system-ui', 'sans-serif'],
-				mono: ['SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'monospace']
+				sans: ['Space Grotesk', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+				mono: ['Space Grotesk', 'Monaco', 'monospace']
 			},
 			fontSize: {
 				'display-2xl': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
@@ -99,9 +99,9 @@ export default {
 				'98': '24.5rem'
 			},
 			backgroundImage: {
-				'space-gradient': 'linear-gradient(135deg, #1e3a8a 0%, #ec4899 50%, #8b5cf6 100%)',
-				'cosmic-gradient': 'radial-gradient(ellipse at center, #1e3a8a 0%, #0c0a1f 70%)',
-				'mining-glow': 'radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, transparent 70%)'
+				'openai-gradient': 'linear-gradient(135deg, rgba(16, 163, 127, 0.1) 0%, rgba(0, 0, 0, 0.95) 100%)',
+				'subtle-gradient': 'linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(17, 17, 17, 1) 100%)',
+				'card-gradient': 'linear-gradient(145deg, rgba(34, 34, 34, 0.8) 0%, rgba(17, 17, 17, 0.9) 100%)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
