@@ -3,13 +3,15 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Sparkles, ArrowRight, Code, Zap, Users } from 'lucide-react';
+import { Sparkles, ArrowRight, Code, Zap, Users, Play, Power } from 'lucide-react';
 
 const TryAI8TYPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
   const [useCase, setUseCase] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [hoveredDemo, setHoveredDemo] = useState<number | null>(null);
+  const [bootingUp, setBootingUp] = useState<number | null>(null);
 
   const demos = [
     {
@@ -17,23 +19,34 @@ const TryAI8TYPage: React.FC = () => {
       title: 'Intelligent Code Assistant',
       description: 'AI-powered coding companion that helps developers write, debug, and optimize code faster.',
       features: ['Code completion', 'Bug detection', 'Performance optimization', 'Documentation generation'],
-      status: 'Available'
+      status: 'Available',
+      color: 'primary'
     },
     {
       icon: <Zap className="w-8 h-8 text-accent" />,
       title: 'Automation Workflow Builder',
       description: 'Visual workflow designer that creates intelligent automation without complex programming.',
       features: ['Drag-and-drop interface', 'Smart triggers', 'Data processing', 'Integration hub'],
-      status: 'Beta'
+      status: 'Beta',
+      color: 'accent'
     },
     {
       icon: <Users className="w-8 h-8 text-secondary" />,
       title: 'Team Intelligence Platform',
       description: 'Collaborative AI that enhances team productivity and decision-making processes.',
       features: ['Meeting insights', 'Decision tracking', 'Knowledge management', 'Team analytics'],
-      status: 'Coming Soon'
+      status: 'Coming Soon',
+      color: 'secondary'
     }
   ];
+
+  const handleDemoHover = (index: number) => {
+    setHoveredDemo(index);
+    if (demos[index].status !== 'Coming Soon') {
+      setBootingUp(index);
+      setTimeout(() => setBootingUp(null), 2000);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,50 +71,130 @@ const TryAI8TYPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Demo Showcase */}
-        <div className="space-y-8">
-          <h2 className="text-4xl font-bold text-center text-white">
+        {/* Interactive Tool Preview System */}
+        <div className="space-y-12">
+          <h2 className="text-5xl font-bold text-center text-white">
             Interactive Demos
           </h2>
+          <p className="text-xl text-white/80 text-center max-w-3xl mx-auto">
+            Experience AI8TY tools firsthand. Each demo responds to your interactions and shows real capabilities.
+          </p>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {demos.map((demo, index) => (
-              <Card key={index} className="glass-card border-white/10 hover:border-primary/30 transition-all duration-300 hover:scale-105">
-                <CardContent className="p-6">
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="w-12 h-12 glass-card rounded-full flex items-center justify-center">
-                        {demo.icon}
-                      </div>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        demo.status === 'Available' ? 'bg-green-500/20 text-green-400' :
-                        demo.status === 'Beta' ? 'bg-yellow-500/20 text-yellow-400' :
-                        'bg-blue-500/20 text-blue-400'
-                      }`}>
-                        {demo.status}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-bold text-white">{demo.title}</h3>
-                    <p className="text-white/70 text-sm leading-relaxed">
-                      {demo.description}
-                    </p>
-                    <div className="space-y-2">
-                      {demo.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                          <span className="text-white/80 text-xs">{feature}</span>
+              <div
+                key={index}
+                className="group cursor-pointer"
+                onMouseEnter={() => handleDemoHover(index)}
+                onMouseLeave={() => setHoveredDemo(null)}
+              >
+                <Card className={`glass-card border-white/10 transition-all duration-500 transform 
+                  ${hoveredDemo === index ? `border-${demo.color}/50 scale-105 shadow-2xl` : 'hover:border-primary/30'}
+                  ${bootingUp === index ? 'animate-pulse' : ''}
+                `}>
+                  <CardContent className="p-8 relative overflow-hidden">
+                    {/* Boot-up Animation */}
+                    {bootingUp === index && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-pulse" />
+                    )}
+                    
+                    <div className="space-y-6 relative z-10">
+                      {/* System Status Header */}
+                      <div className="flex items-center justify-between">
+                        <div className={`w-16 h-16 glass-card rounded-full flex items-center justify-center transition-all duration-300 
+                          ${bootingUp === index ? `animate-pulse-glow shadow-lg shadow-${demo.color}/50` : ''}`}>
+                          {bootingUp === index ? (
+                            <Power className={`w-8 h-8 text-${demo.color} animate-pulse`} />
+                          ) : (
+                            demo.icon
+                          )}
                         </div>
-                      ))}
+                        
+                        <div className="flex items-center gap-2">
+                          {bootingUp === index && (
+                            <div className="flex items-center gap-1 text-xs text-primary">
+                              <div className="w-1 h-1 bg-primary rounded-full animate-pulse" />
+                              <span>BOOTING</span>
+                            </div>
+                          )}
+                          <span className={`text-xs px-3 py-1 rounded-full transition-all duration-300 ${
+                            demo.status === 'Available' ? 'bg-green-500/20 text-green-400' :
+                            demo.status === 'Beta' ? 'bg-yellow-500/20 text-yellow-400' :
+                            'bg-blue-500/20 text-blue-400'
+                          } ${hoveredDemo === index ? 'animate-pulse' : ''}`}>
+                            {demo.status}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Terminal-Style Title */}
+                      <div className="space-y-2">
+                        <h3 className={`text-xl font-bold text-white transition-all duration-300 
+                          ${hoveredDemo === index ? `text-${demo.color}` : ''}`}>
+                          {bootingUp === index ? '> Initializing...' : demo.title}
+                        </h3>
+                        {bootingUp === index && (
+                          <div className="text-xs text-white/60 font-mono">
+                            <div className="animate-pulse">// Loading AI modules...</div>
+                            <div className="animate-pulse delay-200">// Connecting to services...</div>
+                            <div className="animate-pulse delay-500">// System ready</div>
+                          </div>
+                        )}
+                      </div>
+
+                      {!bootingUp && (
+                        <>
+                          <p className="text-white/70 leading-relaxed group-hover:text-white/90 transition-colors duration-300">
+                            {demo.description}
+                          </p>
+                          
+                          {/* Feature Matrix */}
+                          <div className="grid grid-cols-2 gap-2">
+                            {demo.features.map((feature, featureIndex) => (
+                              <div 
+                                key={featureIndex} 
+                                className={`glass-card p-2 rounded text-xs text-center transition-all duration-300 
+                                  ${hoveredDemo === index ? `border-${demo.color}/30 bg-${demo.color}/5` : ''}`}
+                              >
+                                <span className="text-white/80">{feature}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </>
+                      )}
+
+                      {/* Interactive CTA */}
+                      <Button 
+                        className={`w-full font-semibold transition-all duration-300 group/btn
+                          ${demo.status === 'Coming Soon' ? 'glass-button opacity-50 cursor-not-allowed' : 
+                            `glass-button text-white hover:shadow-lg hover:shadow-${demo.color}/20`}
+                          ${hoveredDemo === index && demo.status !== 'Coming Soon' ? 'animate-pulse' : ''}`}
+                        disabled={demo.status === 'Coming Soon'}
+                      >
+                        <div className="flex items-center justify-center gap-2">
+                          {bootingUp === index ? (
+                            <>
+                              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                              <span>Starting...</span>
+                            </>
+                          ) : (
+                            <>
+                              {demo.status === 'Available' && <Play className="w-4 h-4" />}
+                              <span>
+                                {demo.status === 'Available' ? 'Launch Demo' : 
+                                 demo.status === 'Beta' ? 'Join Beta' : 'Notify Me'}
+                              </span>
+                              {demo.status !== 'Coming Soon' && (
+                                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                              )}
+                            </>
+                          )}
+                        </div>
+                      </Button>
                     </div>
-                    <Button 
-                      className="w-full glass-button text-white font-semibold"
-                      disabled={demo.status === 'Coming Soon'}
-                    >
-                      {demo.status === 'Available' ? 'Try Demo' : 
-                       demo.status === 'Beta' ? 'Join Beta' : 'Notify Me'}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
