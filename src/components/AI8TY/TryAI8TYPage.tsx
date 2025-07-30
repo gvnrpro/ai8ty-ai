@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Sparkles, ArrowRight, Code, Zap, Users, Play, Power } from 'lucide-react';
+import { Sparkles, ArrowRight, Code, Zap, Users, Play, Power, BarChart3 } from 'lucide-react';
 
 const TryAI8TYPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -16,27 +16,39 @@ const TryAI8TYPage: React.FC = () => {
   const demos = [
     {
       icon: <Code className="w-8 h-8 text-primary" />,
-      title: 'Intelligent Code Assistant',
-      description: 'AI-powered coding companion that helps developers write, debug, and optimize code faster.',
-      features: ['Code completion', 'Bug detection', 'Performance optimization', 'Documentation generation'],
+      title: '72hr Web Build Timer',
+      description: 'Watch a complete website come to life in real-time. See our development process from concept to deployment.',
+      features: ['Live progress tracking', 'Real deployment metrics', '3-day guarantee', 'Performance monitoring'],
       status: 'Available',
-      color: 'primary'
+      color: 'primary',
+      category: 'Development'
     },
     {
-      icon: <Zap className="w-8 h-8 text-accent" />,
-      title: 'Automation Workflow Builder',
-      description: 'Visual workflow designer that creates intelligent automation without complex programming.',
-      features: ['Drag-and-drop interface', 'Smart triggers', 'Data processing', 'Integration hub'],
-      status: 'Beta',
-      color: 'accent'
+      icon: <Sparkles className="w-8 h-8 text-accent" />,
+      title: '3D Visualization Sandbox',
+      description: 'Interactive 3D product viewer showcasing our visualization capabilities and rendering quality.',
+      features: ['Real-time rendering', '360° product views', 'Material customization', 'Export options'],
+      status: 'Available',
+      color: 'accent',
+      category: 'Creative'
     },
     {
       icon: <Users className="w-8 h-8 text-secondary" />,
-      title: 'Team Intelligence Platform',
-      description: 'Collaborative AI that enhances team productivity and decision-making processes.',
-      features: ['Meeting insights', 'Decision tracking', 'Knowledge management', 'Team analytics'],
-      status: 'Coming Soon',
-      color: 'secondary'
+      title: 'AI Clone Voice Generator',
+      description: 'Experience voice cloning technology. Upload a voice sample and hear your AI digital twin.',
+      features: ['Voice synthesis', 'Emotion control', 'Multi-language support', 'Real-time generation'],
+      status: 'Beta',
+      color: 'secondary',
+      category: 'AI Solutions'
+    },
+    {
+      icon: <BarChart3 className="w-8 h-8 text-yellow-400" />,
+      title: 'Growth Analytics Dashboard',
+      description: 'Live analytics dashboard showing real business metrics and AI-powered insights.',
+      features: ['Real-time data', 'Predictive analytics', 'Custom reports', 'ROI tracking'],
+      status: 'Available',
+      color: 'yellow-400',
+      category: 'Strategy'
     }
   ];
 
@@ -71,16 +83,17 @@ const TryAI8TYPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Interactive Tool Preview System */}
+        {/* Interactive Service Preview System */}
         <div className="space-y-12">
           <h2 className="text-5xl font-bold text-center text-white">
-            Interactive Demos
+            Live Service Demos
           </h2>
           <p className="text-xl text-white/80 text-center max-w-3xl mx-auto">
-            Experience AI8TY tools firsthand. Each demo responds to your interactions and shows real capabilities.
+            Experience our actual services in action. These aren't mockups—they're real tools 
+            showcasing the quality and speed of AI8TY delivery.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {demos.map((demo, index) => (
               <div
                 key={index}
@@ -110,20 +123,23 @@ const TryAI8TYPage: React.FC = () => {
                           )}
                         </div>
                         
-                        <div className="flex items-center gap-2">
-                          {bootingUp === index && (
-                            <div className="flex items-center gap-1 text-xs text-primary">
-                              <div className="w-1 h-1 bg-primary rounded-full animate-pulse" />
-                              <span>BOOTING</span>
-                            </div>
-                          )}
-                          <span className={`text-xs px-3 py-1 rounded-full transition-all duration-300 ${
-                            demo.status === 'Available' ? 'bg-green-500/20 text-green-400' :
-                            demo.status === 'Beta' ? 'bg-yellow-500/20 text-yellow-400' :
-                            'bg-blue-500/20 text-blue-400'
-                          } ${hoveredDemo === index ? 'animate-pulse' : ''}`}>
-                            {demo.status}
-                          </span>
+                        <div className="flex flex-col items-end gap-2">
+                          <div className="flex items-center gap-2">
+                            {bootingUp === index && (
+                              <div className="flex items-center gap-1 text-xs text-primary">
+                                <div className="w-1 h-1 bg-primary rounded-full animate-pulse" />
+                                <span>LOADING</span>
+                              </div>
+                            )}
+                            <span className={`text-xs px-3 py-1 rounded-full transition-all duration-300 ${
+                              demo.status === 'Available' ? 'bg-green-500/20 text-green-400' :
+                              demo.status === 'Beta' ? 'bg-yellow-500/20 text-yellow-400' :
+                              'bg-blue-500/20 text-blue-400'
+                            } ${hoveredDemo === index ? 'animate-pulse' : ''}`}>
+                              {demo.status}
+                            </span>
+                          </div>
+                          <span className="text-xs text-primary/80">{demo.category}</span>
                         </div>
                       </div>
 

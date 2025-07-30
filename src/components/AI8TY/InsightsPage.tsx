@@ -6,28 +6,28 @@ import { BookOpen, TrendingUp, Users, Calendar } from 'lucide-react';
 const InsightsPage: React.FC = () => {
   const articles = [
     {
-      category: 'AI Trends',
-      title: 'The Future of Accessible AI: Breaking Down Barriers to Innovation',
-      excerpt: 'Exploring how democratized AI tools are reshaping industries and empowering creators, businesses, and communities to innovate at unprecedented scales.',
-      author: 'AI8TY Research Team',
+      category: 'Service Excellence',
+      title: '72-Hour Web Builds: How AI8TY Delivers Production-Ready Sites in 3 Days',
+      excerpt: 'Behind the scenes of our signature service: the tools, processes, and AI-powered workflows that make impossible timelines possible.',
+      author: 'AI8TY Development Team',
       date: '2024-01-15',
       readTime: '8 min read',
       featured: true
     },
     {
-      category: 'Technical Deep Dive',
-      title: 'Building Responsible AI Systems: A Practical Framework',
-      excerpt: 'A comprehensive guide to implementing ethical AI practices in production environments, covering bias detection, transparency, and accountability.',
-      author: 'Dr. Sarah Chen',
+      category: 'Creative Process',
+      title: 'The Intelligence Stack: How Our Four Service Layers Work Together',
+      excerpt: 'Deep dive into AI8TY\'s integrated approach: from creative vision through AI development to growth strategy and rapid execution.',
+      author: 'Creative Director, AI8TY',
       date: '2024-01-10',
       readTime: '12 min read',
       featured: false
     },
     {
-      category: 'Industry Analysis',
-      title: 'Small Teams, Big Impact: How AI Levels the Playing Field',
-      excerpt: 'Case studies showing how small businesses and startups are using AI8TY tools to compete with enterprise-level capabilities.',
-      author: 'Michael Rodriguez',
+      category: 'Client Success',
+      title: 'From Concept to Launch: Real Stories from AI8TY Clients',
+      excerpt: 'Case studies showing how businesses transformed their operations using our Creative & Design, AI Solutions, Strategy, and Development services.',
+      author: 'Client Success Team',
       date: '2024-01-05',
       readTime: '6 min read',
       featured: false

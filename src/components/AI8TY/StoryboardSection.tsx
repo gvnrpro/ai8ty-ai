@@ -45,6 +45,12 @@ const StoryboardSection: React.FC = () => {
       content: 'Every breakthrough technology eventually becomes invisible infrastructure. We\'re accelerating that timeline for AI.',
       visual: 'mission',
     },
+    {
+      title: 'How',
+      subtitle: 'The Method',
+      content: 'Four interconnected layers: Creative vision, AI intelligence, growth strategy, and rapid execution. Each building on the last.',
+      visual: 'method',
+    },
   ];
 
   return (
@@ -70,10 +76,10 @@ const StoryboardSection: React.FC = () => {
             <div className="relative w-full h-screen flex items-center justify-center">
               {scenes.map((scene, index) => {
                 const sceneProgress = Math.max(0, Math.min(1, 
-                  (scrollProgress - index * 0.33) / 0.33
+                  (scrollProgress - index * 0.25) / 0.25
                 ));
                 
-                const isActive = scrollProgress > index * 0.33 && scrollProgress < (index + 1) * 0.33;
+                const isActive = scrollProgress > index * 0.25 && scrollProgress < (index + 1) * 0.25;
                 
                 return (
                   <div
@@ -158,6 +164,25 @@ const StoryboardSection: React.FC = () => {
                               </div>
                             </div>
                           )}
+                          
+                          {scene.visual === 'method' && (
+                            <div className="w-full h-full bg-gradient-to-br from-purple-900/20 to-indigo-900/20 flex items-center justify-center">
+                              <div className="grid grid-cols-2 gap-8 p-8">
+                                {['Creative', 'AI', 'Strategy', 'Development'].map((layer, i) => (
+                                  <div
+                                    key={i}
+                                    className="w-20 h-20 glass-card rounded-xl flex items-center justify-center"
+                                    style={{
+                                      animation: isActive ? `layer-pulse ${1.5 + i * 0.3}s ease-in-out infinite` : 'none',
+                                      animationDelay: `${i * 0.2}s`
+                                    }}
+                                  >
+                                    <span className="text-xs text-white/80 font-semibold">{layer}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -181,6 +206,10 @@ const StoryboardSection: React.FC = () => {
         @keyframes pulse {
           0%, 100% { transform: scale(1); opacity: 1; }
           50% { transform: scale(1.1); opacity: 0.7; }
+        }
+        @keyframes layer-pulse {
+          0%, 100% { transform: scale(1); border-color: rgba(255, 255, 255, 0.1); }
+          50% { transform: scale(1.05); border-color: rgba(var(--primary), 0.5); }
         }
       `}} />
     </section>

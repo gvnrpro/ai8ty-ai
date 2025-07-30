@@ -1,151 +1,201 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Code, Database, Zap, Shield, Globe, ArrowRight } from 'lucide-react';
+import { 
+  Palette, Eye, Smartphone, Globe, 
+  Brain, Mic, MessageSquare, BarChart3,
+  TrendingUp, Target, Search, Zap,
+  Code, Timer, Wrench, ArrowRight, Sparkles
+} from 'lucide-react';
 
 const WhatWeBuildPage: React.FC = () => {
-  const products = [
+  const [activeService, setActiveService] = useState<number | null>(null);
+
+  const services = [
     {
-      icon: <Code className="w-10 h-10 text-primary" />,
-      title: 'AI Development Platform',
-      description: 'Complete toolkit for building, training, and deploying AI models with enterprise-grade security and scalability.',
-      features: ['Model Training Studio', 'API Management', 'Version Control', 'Performance Monitoring'],
-      category: 'Platform',
-      status: 'Live'
+      category: '🧠 Creative & Design',
+      title: 'Vision Layer',
+      description: 'Where intelligence meets aesthetics. We craft brand experiences that resonate and visual stories that convert.',
+      icon: <Palette className="w-8 h-8 text-primary" />,
+      gradient: 'from-purple-500/20 to-pink-500/20',
+      services: [
+        { name: 'Branding & Identity', icon: <Eye className="w-5 h-5" />, description: 'Complete brand systems that tell your story' },
+        { name: '3D Visualization', icon: <Sparkles className="w-5 h-5" />, description: 'Immersive 3D experiences and product renders' },
+        { name: 'UI/UX Design', icon: <Smartphone className="w-5 h-5" />, description: 'User-centered design that drives engagement' },
+        { name: 'Web Design', icon: <Globe className="w-5 h-5" />, description: 'Responsive websites that perform and convert' },
+        { name: 'Cinematic Media & Motion Graphics', icon: <Zap className="w-5 h-5" />, description: 'Dynamic visuals that captivate audiences' }
+      ],
+      deliveryTime: '5-14 days',
+      startingPrice: 'From $2,500'
     },
     {
-      icon: <Zap className="w-10 h-10 text-accent" />,
-      title: 'Intelligent Automation Suite',
-      description: 'End-to-end automation tools that learn and adapt to your business processes.',
-      features: ['Visual Workflow Builder', 'Smart Triggers', 'Data Integration', 'Process Analytics'],
-      category: 'Automation',
-      status: 'Beta'
+      category: '🤖 AI & Tech Solutions',
+      title: 'Intelligence Engine',
+      description: 'Custom AI that thinks like your team and works like magic. From chatbots to digital twins.',
+      icon: <Brain className="w-8 h-8 text-accent" />,
+      gradient: 'from-blue-500/20 to-cyan-500/20',
+      services: [
+        { name: 'Custom AI Tools', icon: <Brain className="w-5 h-5" />, description: 'Tailored AI solutions for your specific workflows' },
+        { name: 'Digital Clones & Voice Models', icon: <Mic className="w-5 h-5" />, description: 'AI replicas that sound and think like you' },
+        { name: 'AI-Powered Chat Interfaces', icon: <MessageSquare className="w-5 h-5" />, description: 'Intelligent conversations that understand context' },
+        { name: 'Data Visualization Dashboards', icon: <BarChart3 className="w-5 h-5" />, description: 'Transform data into actionable insights' }
+      ],
+      deliveryTime: '7-21 days',
+      startingPrice: 'From $5,000'
     },
     {
-      icon: <Database className="w-10 h-10 text-secondary" />,
-      title: 'Knowledge Intelligence Hub',
-      description: 'Transform your data into actionable insights with AI-powered analytics and reporting.',
-      features: ['Data Discovery', 'Predictive Analytics', 'Natural Language Queries', 'Custom Dashboards'],
-      category: 'Analytics',
-      status: 'Live'
+      category: '📈 Strategy & Growth',
+      title: 'Growth Catalyst',
+      description: 'Data-driven strategies that scale. We optimize your path to growth with precision and intelligence.',
+      icon: <TrendingUp className="w-8 h-8 text-secondary" />,
+      gradient: 'from-green-500/20 to-emerald-500/20',
+      services: [
+        { name: 'Business Modeling', icon: <Target className="w-5 h-5" />, description: 'Strategic frameworks for sustainable growth' },
+        { name: 'Funnel Optimization', icon: <TrendingUp className="w-5 h-5" />, description: 'Convert more visitors into customers' },
+        { name: 'Growth Strategy', icon: <Zap className="w-5 h-5" />, description: 'Roadmaps for scaling your business' },
+        { name: 'SEO & Campaign Planning', icon: <Search className="w-5 h-5" />, description: 'Visibility strategies that drive results' }
+      ],
+      deliveryTime: '3-10 days',
+      startingPrice: 'From $1,500'
     },
     {
-      icon: <Shield className="w-10 h-10 text-primary" />,
-      title: 'AI Safety & Governance',
-      description: 'Comprehensive tools for responsible AI deployment with built-in compliance and monitoring.',
-      features: ['Bias Detection', 'Compliance Monitoring', 'Audit Trails', 'Risk Assessment'],
-      category: 'Security',
-      status: 'Coming Soon'
-    },
-    {
-      icon: <Globe className="w-10 h-10 text-accent" />,
-      title: 'Community AI Infrastructure',
-      description: 'Open-source tools and infrastructure for democratizing AI access across communities.',
-      features: ['Public APIs', 'Educational Resources', 'Community Models', 'Open Datasets'],
-      category: 'Open Source',
-      status: 'Alpha'
+      category: '🌐 Web & App Development',
+      title: 'Execution Platform',
+      description: 'Lightning-fast development that doesn\'t compromise on quality. From idea to deployment in 72 hours.',
+      icon: <Code className="w-8 h-8 text-yellow-400" />,
+      gradient: 'from-orange-500/20 to-yellow-500/20',
+      services: [
+        { name: '72hr Web Builds', icon: <Timer className="w-5 h-5" />, description: 'Complete websites delivered in 3 days' },
+        { name: 'Mobile-Optimized Sites', icon: <Smartphone className="w-5 h-5" />, description: 'Perfect experiences on every device' },
+        { name: 'App Development & API Integration', icon: <Wrench className="w-5 h-5" />, description: 'Custom applications that scale with you' },
+        { name: 'Hosting & Custom Domains', icon: <Globe className="w-5 h-5" />, description: 'Complete deployment and maintenance' }
+      ],
+      deliveryTime: '3-7 days',
+      startingPrice: 'From $3,500'
     }
   ];
 
-  const capabilities = [
-    'Custom AI Model Development',
-    'Enterprise Integration Services',
-    'Scalable Cloud Infrastructure',
-    'Real-time Processing Systems',
-    'Advanced Security & Compliance',
-    'Multi-platform Deployment'
+  const coreCapabilities = [
+    'Rapid prototyping and deployment',
+    'AI-first approach to all solutions',
+    'Cross-platform compatibility',
+    'Scalable architecture design',
+    'Performance optimization',
+    'Ongoing support and maintenance'
   ];
 
   return (
     <div className="min-h-screen py-20 px-6">
-      <div className="max-w-7xl mx-auto space-y-16">
+      <div className="max-w-7xl mx-auto space-y-20">
         {/* Header */}
-        <div className="text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-            What We Build
+        <div className="text-center space-y-8">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            Intelligence Stack
           </h1>
           <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-            We create intelligent tools and infrastructure that bridge the gap between cutting-edge AI research and practical, everyday applications. Our solutions are designed to be powerful yet accessible, scalable yet simple.
+            Four interconnected layers that transform your business. From vision to execution, 
+            each service builds upon the last to create comprehensive digital transformation.
           </p>
         </div>
 
-        {/* Core Message */}
+        {/* Core Philosophy */}
         <Card className="glass-card border-primary/20 bg-gradient-to-r from-primary/10 to-accent/10">
           <CardContent className="p-8 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Intelligent tools and infrastructure for real-world impact
+              Where Art Meets Intelligence
             </h2>
             <p className="text-lg text-white/80 max-w-3xl mx-auto">
-              Every product we build is guided by one principle: making advanced AI capabilities accessible and useful for teams and organizations of all sizes.
+              Every service we offer combines creative excellence with intelligent automation. 
+              We don't just build solutions—we craft experiences that think, adapt, and evolve.
             </p>
           </CardContent>
         </Card>
 
-        {/* Products Grid */}
-        <div className="space-y-8">
-          <h2 className="text-4xl font-bold text-center text-white">
-            Our Product Suite
+        {/* Service Layers */}
+        <div className="space-y-12">
+          <h2 className="text-4xl font-bold text-center text-white mb-12">
+            The Four Pillars
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {products.map((product, index) => (
-              <Card key={index} className="glass-card border-white/10 hover:border-primary/30 transition-all duration-300 hover:scale-102">
-                <CardContent className="p-8">
-                  <div className="space-y-6">
-                    {/* Header */}
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 glass-card rounded-full flex items-center justify-center">
-                          {product.icon}
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-bold text-white">{product.title}</h3>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-xs px-2 py-1 glass-card rounded-full text-white/80">
-                              {product.category}
-                            </span>
-                            <span className={`text-xs px-2 py-1 rounded-full ${
-                              product.status === 'Live' ? 'bg-green-500/20 text-green-400' :
-                              product.status === 'Beta' ? 'bg-blue-500/20 text-blue-400' :
-                              product.status === 'Alpha' ? 'bg-yellow-500/20 text-yellow-400' :
-                              'bg-purple-500/20 text-purple-400'
-                            }`}>
-                              {product.status}
-                            </span>
+          
+          <div className="space-y-8">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group cursor-pointer"
+                onMouseEnter={() => setActiveService(index)}
+                onMouseLeave={() => setActiveService(null)}
+              >
+                <Card className={`glass-card border-white/10 transition-all duration-500 
+                  ${activeService === index ? 'border-primary/50 scale-[1.02] shadow-2xl' : 'hover:border-primary/30'}
+                `}>
+                  <CardContent className="p-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                      {/* Service Header */}
+                      <div className="space-y-6">
+                        <div className="flex items-center gap-4">
+                          <div className={`w-16 h-16 glass-card rounded-full flex items-center justify-center 
+                            bg-gradient-to-br ${service.gradient} transition-all duration-300
+                            ${activeService === index ? 'scale-110 shadow-lg' : ''}
+                          `}>
+                            {service.icon}
                           </div>
+                          <div>
+                            <h3 className="text-2xl font-bold text-white">{service.title}</h3>
+                            <p className="text-sm text-primary">{service.category}</p>
+                          </div>
+                        </div>
+                        
+                        <p className="text-white/80 leading-relaxed">{service.description}</p>
+                        
+                        <div className="flex items-center justify-between">
+                          <div className="space-y-1">
+                            <p className="text-xs text-white/60">Delivery Time</p>
+                            <p className="text-sm text-white font-semibold">{service.deliveryTime}</p>
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-xs text-white/60">Investment</p>
+                            <p className="text-sm text-white font-semibold">{service.startingPrice}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Service Grid */}
+                      <div className="lg:col-span-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {service.services.map((subService, subIndex) => (
+                            <div 
+                              key={subIndex}
+                              className={`glass-card p-4 rounded-lg transition-all duration-300 group-hover:bg-white/5
+                                ${activeService === index ? 'border-primary/20 bg-white/5' : ''}
+                              `}
+                            >
+                              <div className="flex items-start gap-3">
+                                <div className="w-10 h-10 glass-card rounded-lg flex items-center justify-center flex-shrink-0">
+                                  {subService.icon}
+                                </div>
+                                <div className="space-y-1">
+                                  <h4 className="text-white font-semibold text-sm">{subService.name}</h4>
+                                  <p className="text-white/70 text-xs leading-relaxed">{subService.description}</p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </div>
 
-                    {/* Description */}
-                    <p className="text-white/80 leading-relaxed">
-                      {product.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="grid grid-cols-2 gap-3">
-                      {product.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="glass-card p-3 rounded-lg">
-                          <span className="text-sm text-white/90">{feature}</span>
-                        </div>
-                      ))}
+                    {/* Action Button */}
+                    <div className="mt-8 pt-6 border-t border-white/10">
+                      <Button className={`w-full glass-button text-white font-semibold group/btn transition-all duration-300
+                        ${activeService === index ? 'animate-pulse-glow' : ''}
+                      `}>
+                        <span>Explore {service.title}</span>
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
                     </div>
-
-                    {/* CTA */}
-                    <Button 
-                      className="w-full glass-button text-white font-semibold group"
-                      disabled={product.status === 'Coming Soon'}
-                    >
-                      {product.status === 'Live' ? 'Learn More' :
-                       product.status === 'Beta' ? 'Join Beta' :
-                       product.status === 'Alpha' ? 'Request Access' :
-                       'Coming Soon'}
-                      {product.status !== 'Coming Soon' && (
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      )}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -153,15 +203,15 @@ const WhatWeBuildPage: React.FC = () => {
         {/* Core Capabilities */}
         <div className="space-y-8">
           <h2 className="text-4xl font-bold text-center text-white">
-            Core Capabilities
+            Why Choose AI8TY
           </h2>
           <Card className="glass-card border-white/10">
             <CardContent className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {capabilities.map((capability, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0" />
-                    <span className="text-white/90">{capability}</span>
+                {coreCapabilities.map((capability, index) => (
+                  <div key={index} className="flex items-center gap-3 group">
+                    <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0 group-hover:scale-125 transition-transform" />
+                    <span className="text-white/90 group-hover:text-white transition-colors">{capability}</span>
                   </div>
                 ))}
               </div>
@@ -169,22 +219,46 @@ const WhatWeBuildPage: React.FC = () => {
           </Card>
         </div>
 
-        {/* CTA Section */}
+        {/* 72hr Build Highlight */}
+        <Card className="glass-card border-yellow-500/20 bg-gradient-to-r from-yellow-500/10 to-orange-500/10">
+          <CardContent className="p-8 text-center">
+            <div className="space-y-6">
+              <div className="w-20 h-20 mx-auto glass-card rounded-full flex items-center justify-center animate-pulse-glow">
+                <Timer className="w-10 h-10 text-yellow-400" />
+              </div>
+              <h3 className="text-3xl font-bold text-white">
+                72-Hour Web Builds
+              </h3>
+              <p className="text-white/80 max-w-2xl mx-auto">
+                Our signature service: Complete, production-ready websites delivered in just 3 days. 
+                No shortcuts, no compromises—just intelligent development at light speed.
+              </p>
+              <Button className="glass-button text-white font-semibold px-8 py-3 group">
+                <Timer className="w-4 h-4 mr-2" />
+                Start Your 72hr Build
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Final CTA */}
         <Card className="glass-card border-primary/20 bg-gradient-to-r from-primary/10 to-accent/10">
           <CardContent className="p-8 text-center">
             <div className="space-y-6">
               <h3 className="text-3xl font-bold text-white">
-                Ready to Build with AI8TY?
+                Ready to Transform Your Business?
               </h3>
               <p className="text-white/80 max-w-2xl mx-auto">
-                Whether you need a complete AI platform or custom solutions, our team can help you harness the power of intelligent automation.
+                Let's build something extraordinary together. From concept to deployment, 
+                we'll guide you through every layer of the Intelligence Stack.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button className="glass-button text-white font-semibold px-8 py-3">
-                  Explore Our Platform
+                  Start Your Project
                 </Button>
                 <Button className="glass-button-purple text-white font-semibold px-8 py-3">
-                  Schedule a Demo
+                  Schedule Consultation
                 </Button>
               </div>
             </div>
